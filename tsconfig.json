@@ -20,7 +20,9 @@
       "@helpers/*": ["helpers/*"],
       "@middlewares/*": ["middlewares/*"],
       "@models/*": ["api/v1/models/*"], 
-      "@controllers/*": ["api/v1/controllers/*"] 
+      "@controllers/*": ["api/v1/controllers/*"] ,
+      "@routes/*": ["api/v1/routes/*"],
+      "@validates/*": ["api/v1/validates/*"],
     }
   },
   "include": ["src/**/*.ts"],
