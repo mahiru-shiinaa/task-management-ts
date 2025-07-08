@@ -19,7 +19,8 @@
       "@config/*": ["config/*"],
       "@helpers/*": ["helpers/*"],
       "@middlewares/*": ["middlewares/*"],
-      "@models/*": ["api/v1/models/*"] // Đúng rồi, đây là đường dẫn từ src/
+      "@models/*": ["api/v1/models/*"], 
+      "@controllers/*": ["api/v1/controllers/*"] 
     }
   },
   "include": ["src/**/*.ts"],
