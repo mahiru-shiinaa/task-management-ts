@@ -52,3 +52,53 @@ export const detail = async (req: Request, res: Response): Promise<void> => {
   const tasks = await Task.findOne({ deleted: false, _id: id });
   res.json(tasks);
 };
+
+export const changeStatus = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
+    if (!updatedTask) {
+      res.status(404).json({ message: "Không tìm thấy task" });
+      return;
+    }
+
+    res.json(updatedTask);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Lỗi server" });
+  }
+};
+
+export const changeMulti = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { ids, key, value } = req.body;
+
+    switch (key) {
+      case "status": {
+        const updatedTasks = await Task.updateMany(
+          { _id: { $in: ids } },
+          { status: value }
+        );
+        res.json(updatedTasks);
+        return;
+      }
+      case "delete": {
+        const deletedTasks = await Task.updateMany(
+          { _id: { $in: ids } },
+          { deleted: true, deletedAt: new Date() }
+        );
+        res.json({ message: "Xóa thành công!", result: deletedTasks });
+        return;
+      }
+      default:
+        res.status(404).json({ message: "Không tìm thấy task" });
+        return;
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Lỗi server" });
+  }
+};
+
+
+
