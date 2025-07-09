@@ -14,7 +14,6 @@
     "baseUrl": "./src", // Base url là thư mục 'src'
     "paths": {
       // Vì baseUrl là 'src', các đường dẫn trong paths sẽ bắt đầu từ 'src/'
-      "@src/*": ["*"], // Alias cho chính thư mục src (không cần src/src)
       "@api/*": ["api/*"],
       "@config/*": ["config/*"],
       "@helpers/*": ["helpers/*"],
