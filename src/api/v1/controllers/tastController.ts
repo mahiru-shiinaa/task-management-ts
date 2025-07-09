@@ -110,4 +110,24 @@ export const create = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
+export const edit = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json(updatedTask);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Lỗi server" });
+  }
+};
+
+export const deleteTask = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const deletedTask = await Task.findByIdAndUpdate(req.params.id, { deleted: true, deletedAt: new Date() }, { new: true });
+    res.json(deletedTask);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Lỗi server" });
+  }
+};
+
 
