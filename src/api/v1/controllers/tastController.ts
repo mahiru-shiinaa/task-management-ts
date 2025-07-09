@@ -100,5 +100,14 @@ export const changeMulti = async (req: Request, res: Response): Promise<void> =>
   }
 };
 
+export const create = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const newTask = await Task.create(req.body);
+    res.json(newTask);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Lỗi server" });
+  }
+};
 
 
