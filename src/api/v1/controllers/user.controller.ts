@@ -1,0 +1,31 @@
+import md5 from "md5";
+import User from "@models/user.model";
+import { Request, Response } from "express";
+import * as generateHelper from "@helpers/generate";
+
+export const register = async (req: Request, res: Response) : Promise<void> => {
+    try {
+       req.body.password = md5(req.body.password);
+       const exitsEmail = await User.findOne({
+         email: req.body.email,
+         deleted: false,
+       });
+       if (exitsEmail) {
+         res.status(400).json({ message: "Email đã tồn tại" });
+         return ;
+       }
+       req.body.token = generateHelper.generateToken();
+       const newUser = new User(req.body );
+       await newUser.save();
+       const token = newUser.token;
+       res.cookie("token", token, { httpOnly: true });
+       res.json({
+         code: 200,
+         message: "Đăng ký tài khoản thành công",
+         token: token,
+       });
+     } catch (error) {
+       console.error(error);
+       res.status(500).json({ message: "Lỗi server" });
+     }
+} 

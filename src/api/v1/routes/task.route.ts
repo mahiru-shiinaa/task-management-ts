@@ -1,6 +1,6 @@
 import { Router} from "express";
 const router: Router = Router();
-import * as taskController from "@controllers/tastController";
+import * as taskController from "@api/v1/controllers/tast.controller";
 
 
 router.get("/", taskController.index); 
