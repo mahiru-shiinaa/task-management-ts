@@ -1,28 +1,14 @@
 {
   "compilerOptions": {
-    "target": "ES2022", // Mặc định tốt cho Node.js 18+
-    "module": "NodeNext", // Hỗ trợ import/export chuẩn
-    "moduleResolution": "NodeNext", // Để resolve module dạng ESM
-    "rootDir": "./src", // Thư mục code chính
-    "outDir": "./dist", // Thư mục build
-    "esModuleInterop": true, // Cho phép import default từ thư viện commonjs
+    "target": "ES2022",
+    "module": "CommonJS",              // ✅ Dùng CommonJS cho dễ deploy Node.js
+    "moduleResolution": "Node",        // ✅ Không cần NodeNext nữa
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true, // Bật strict mode
-    "skipLibCheck": true,
-
-    // Alias cấu hình ở đây
-    "baseUrl": "./src", // Base url là thư mục 'src'
-    "paths": {
-      // Vì baseUrl là 'src', các đường dẫn trong paths sẽ bắt đầu từ 'src/'
-      "@api/*": ["api/*"],
-      "@config/*": ["config/*"],
-      "@helpers/*": ["helpers/*"],
-      "@middlewares/*": ["middlewares/*"],
-      "@models/*": ["api/v1/models/*"], 
-      "@controllers/*": ["api/v1/controllers/*"] ,
-      "@routes/*": ["api/v1/routes/*"],
-      "@validates/*": ["api/v1/validates/*"],
-    }
+    "strict": true,
+    "skipLibCheck": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
